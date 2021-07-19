@@ -14,7 +14,7 @@ This is used as a top layer when generating passports.
         pip install -r requirements.txt
 
 ## Launch
-как запускать проект (если несколько режимов работы - указать разные комбинации см. ниже)
+
 ```
 1) Edit file config.py
     
