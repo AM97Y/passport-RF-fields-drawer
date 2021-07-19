@@ -1,0 +1,2 @@
+fronts/OCR B Bold.ttf
+fronts/OCR B Regular.ttf

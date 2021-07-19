@@ -1,72 +1,67 @@
+import os
+from argparse import ArgumentParser
+from datetime import datetime
+
+import numpy as np
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 
-
-class TestFont:
-    def __init__(self):
-        pass
-
-    def test(self):
-        self.create_image()
-        self.edit_image()
-
-    @staticmethod
-    def create_image():
-        # font = ImageFont.truetype("Arial-Bold.ttf",14)
-        font = ImageFont.truetype("OCR B Bold.ttf", 18)
-        img = Image.new("RGBA", (500, 250), (255, 255, 255, 0))
-        # (500, 250) - размер изображения, (255, 255, 255,) - цвет фона
-        draw = ImageDraw.Draw(img)
-        draw.text((100, 1), "УВД", fill=(0, 0, 0), font=font)
-        # (100, 1) - координаты текста, fill - цвет текста
-        ImageDraw.Draw(img)
-        img.save("test.png")
-
-    @staticmethod
-    def edit_image():
-        font = ImageFont.truetype("OCR B Regular.ttf", 14)
-        with Image.open("test.png") as img:
-            draw = ImageDraw.Draw(img)
-            draw.text((0, 100), "УВД", fill=(0, 0, 0), font=font)
-            # (100, 1) - координаты текста, fill - цвет текста
-            ImageDraw.Draw(img)
-            img.save("Edit_test.png")
+import config
 
 
 class TextFont2Img:
-    def __init__(self, font_name="OCR B Bold.ttf", size_font=18, size_image=(500, 250)):
+    def __init__(self):
         """
-        font_name: Имя файла шрифта. Также подходит font_name = "OCR B Regular.ttf".
-        size_font: Размер шрифта.
-        size_image: Размер самого изображения.
+        _fonts_list: List of fonts ".
+        _colors_list: List of text colors.
+        _output_path: Results folder.
         """
-        self.font_name = font_name
-        self.size_font = size_font
-        self.size_image = size_image
-        self.font = ImageFont.truetype(self.font_name, self.size_font)
-        self.color_text = (0, 0, 0)
+        self._fonts_list = []
+        self._init_fronts()
 
-    def create_image(self, text="УВД России", height=0, weight=0, name_image="font.png"):
+        self._colors_list = []
+        self._init_colors()
+
+        self._output_path = config.output_path
+
+    def _init_fronts(self):
+        with open(config.fronts, "r") as f:
+            for line in f:
+                self._fonts_list.append(line.strip())
+
+    def _init_colors(self):
+        with open(config.colors, "r") as f:
+            for line in f:
+                color = line.strip().split(' ')
+                self._colors_list.append((int(color[0]), int(color[1]), int(color[2])))
+
+    def create_random_image(self, text=""):
         """
-        text: текст печати.
-        height: высота раположения текста.
-        weight: ширина раположения текста.
-        name_image: имя картинки при сохранении (png).
+        text: Print text on picture.
         """
-        
-        img = Image.new("RGBA", self.size_image, (255, 255, 255, 0))
-        draw = ImageDraw.Draw(img)
-        draw.text((weight, height), text, fill=self.color_text, font=self.font)
+        size_font = np.random.randint(config.size_fronts_min, config.size_fronts_max)
+        font_name = np.random.choice(self._fonts_list)
+        color = self._colors_list[np.random.choice(len(self._colors_list))]
+        font = ImageFont.truetype(font_name, size_font)
+
+        img = Image.new("RGBA", config.size_image, config.color_img)
+        drawer = ImageDraw.Draw(img)
+        drawer.text((config.weight, config.height), text, fill=color, font=font)
         ImageDraw.Draw(img)
-        img.save(name_image)
+        self._makedirs(f'{config.output_path}/')
+
+        today = datetime.datetime.today()
+        img.save(f'{config.output_path}/{today.strftime("%Y-%m-%d-%H.%M.%S")}.png')
+
+    @staticmethod
+    def _makedirs(path):
+        if not os.path.exists(path):
+            os.makedirs(path)
 
 
 if __name__ == '__main__':
-
-    text = "УВД России по Яр обл"
-    height = 100
-    weight = 105
-    name_image = "test_font_ocr.png"
-
-    TextFont2Img().create_image(text, height, weight, name_image)
+    generator = TextFont2Img()
+    with open(config.text, "r") as f:
+        for line in f:
+            generator.create_random_image(line.strip())
