@@ -4,7 +4,7 @@ from PIL import ImageFont
 import unittest
 
 
-class TestFont((unittest.TestCase)):
+class TestFont(unittest.TestCase):
 
     @staticmethod
     def test_create_image():
