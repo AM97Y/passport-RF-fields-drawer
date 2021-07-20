@@ -13,8 +13,8 @@ import config
 class TextFont2Img:
     def __init__(self):
         """
-        _fonts_list: List of fonts ".
-        _colors_list: List of text colors.
+        _fonts_list: List of fonts,
+        _colors_list: List of text colors,
         _output_path: Results folder.
         """
         self._fonts_list = []
@@ -47,7 +47,8 @@ class TextFont2Img:
 
         img = Image.new("RGBA", config.size_image, config.color_img)
         drawer = ImageDraw.Draw(img)
-        drawer.text((config.weight, config.height), text, fill=color, font=font)
+        drawer.text((config.weight, config.height), text, fill=color, font=font,
+                    stroke_width=config.stroke_width, stroke_fill=color)
         ImageDraw.Draw(img)
         self._makedirs(f'{config.output_path}/')
 

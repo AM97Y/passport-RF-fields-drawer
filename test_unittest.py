@@ -23,7 +23,9 @@ class TestFont(unittest.TestCase):
         font = ImageFont.truetype("fronts/OCR B Regular.ttf", 14)
         with Image.open("test.png") as img:
             drawer = ImageDraw.Draw(img)
-            drawer.text((0, 100), "УВД", fill=(0, 0, 0), font=font)
+            drawer.text((0, 100), "УВД", fill=(0, 0, 0), font=font,
+                        stroke_width=1,
+                        stroke_fill=(0, 0, 0))
             # (100, 1) - координаты текста, fill - цвет текста
             ImageDraw.Draw(img)
             img.save("Edit_test.png")
