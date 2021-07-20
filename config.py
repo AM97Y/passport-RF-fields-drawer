@@ -9,7 +9,8 @@ fronts = 'fronts/fronts.txt'
 
 size_fronts_min = 14
 size_fronts_max = 20
-stroke_width = 1
+stroke_width = 0
+shift_letter = 4
 
 color_img = (255, 255, 255, 0)
 size_image = (100, 100)

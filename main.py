@@ -47,13 +47,27 @@ class TextFont2Img:
 
         img = Image.new("RGBA", config.size_image, config.color_img)
         drawer = ImageDraw.Draw(img)
-        drawer.text((config.weight, config.height), text, fill=color, font=font,
-                    stroke_width=config.stroke_width, stroke_fill=color)
+        self.drow2letter(drawer, font, color)
         ImageDraw.Draw(img)
         self._makedirs(f'{config.output_path}/')
 
-        today = datetime.datetime.today()
+        today = datetime.today()
         img.save(f'{config.output_path}/{today.strftime("%Y-%m-%d-%H.%M.%S")}.png')
+
+    @staticmethod
+    def drow2letter(drawer, font, color):
+        """
+
+        drawer: ImageDraw
+        font: random font
+        color: random color
+        """
+        xpos = config.weight
+        for letter in "Россия":
+            drawer.text((xpos, config.height), letter, fill=color, font=font,
+                        stroke_width=config.stroke_width, stroke_fill=color)
+            letter_width, letter_height = drawer.textsize(letter, font=font)
+            xpos += letter_width - config.shift_letter
 
     @staticmethod
     def _makedirs(path):

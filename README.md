@@ -25,6 +25,7 @@ text - a document with texts
     size_fronts_min - minimum font size
     size_fronts_max - maximum font size
     stroke_width - outline thickness, the same color as text
+    shift_letter - shift letter by left
     
     color_img - background color, last number is transparency
     size_image - image size
