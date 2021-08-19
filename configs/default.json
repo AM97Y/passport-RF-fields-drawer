@@ -1,18 +1,18 @@
 {
-  "text_file": "./text.txt",
-  "colors_file": "./colors.txt",
-  "fonts_file": "fonts/fonts.txt",
-  "fonts_param": {
-    "size_fonts_min": 14,
-    "size_fonts_max": 20,
-    "stroke_width": 0,
-    "shift_letter": 1
-  },
-  "img_params": {
-    "color_img": [255, 255, 255, 0],
-    "size_image": [100, 100],
-    "height": 0,
-    "weight": 0
-  },
-  "output_path": "./out/"
+    "text_file": "./text.txt",
+    "colors_file": "./colors.txt",
+    "fonts_file": "fonts/fonts.txt",
+    "fonts_param": {
+        "size_fonts_min": 14,
+        "size_fonts_max": 20,
+        "stroke_width": 0,
+        "shift_letter": 1
+    },
+    "img_params": {
+        "color_img": [255, 255, 255, 0],
+        "size_image": [100, 100],
+        "height": 0,
+        "weight": 0
+    },
+    "output_path": "./out/"
 }
