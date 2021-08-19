@@ -12,7 +12,7 @@ This project randomly generates images with the transparent background from the 
 
 ## Prerequisites
 
- * Installed [Python](https://www.python.org/downloads/) >= 3.6 or [Anaconda](https://www.anaconda.com/products/individual) >= 4.10.1
+* Installed [Python](https://www.python.org/downloads/) >= 3.6 or [Anaconda](https://www.anaconda.com/products/individual) >= 4.10.1
 
 ## Launch
 
@@ -24,5 +24,16 @@ This project randomly generates images with the transparent background from the 
     python main.py --config_path configs/myconfig.json
 
 For more information launch `python main.py -h`. Please also look at `configs/README.md` to get to know about config parameters.
+
+```
+
+## autopep8
+[Autopep8](https://pypi.org/project/autopep8/) automatically formats Python code to conform to the PEP 8 style guide. It uses the pycodestyle utility to determine what parts of the code needs to be formatted. autopep8 is capable of fixing most of the formatting issues that can be reported by pycodestyle.
+
+```
+1) pip install --upgrade autopep8
+
+    
+2) autopep8 --global-config <config_pep> <file>. In project <config_pep> is file 'pep8'.
 
 ```
