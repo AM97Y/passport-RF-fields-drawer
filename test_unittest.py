@@ -10,7 +10,7 @@ class TestFont(unittest.TestCase):
     @staticmethod
     def test_create_image():
         # font = ImageFont.truetype("Arial-Bold.ttf",14)
-        font = ImageFont.truetype("fronts/OCR B Bold.ttf", 18)
+        font = ImageFont.truetype("fonts/OCR B Bold.ttf", 18)
         img = Image.new("RGBA", (500, 250), (255, 255, 255, 0))
         # (500, 250) - размер изображения, (255, 255, 255,) - цвет фона
         drawer = ImageDraw.Draw(img)
@@ -21,7 +21,7 @@ class TestFont(unittest.TestCase):
 
     @staticmethod
     def test_edit_image():
-        font = ImageFont.truetype("fronts/OCR B Regular.ttf", 18)
+        font = ImageFont.truetype("fonts/OCR B Regular.ttf", 18)
         with Image.open("test.png") as img:
             drawer = ImageDraw.Draw(img)
             drawer.text((0, 100), "России", fill=(0, 0, 0), font=font,
