@@ -1,4 +1,4 @@
-# passport RF fields drawer
+# Passport RF fields drawer
 
 This project randomly generates images with the transparent background from the proposed test, color and fonts generates images. It is used as a top layer for generating of passports.
 ## Installation
@@ -12,7 +12,7 @@ This project randomly generates images with the transparent background from the 
 
 ## Prerequisites
 
- * Installed [Python](https://www.python.org/downloads/) >= 3.6 or [Anaconda](https://www.anaconda.com/products/individual)  >= 4.10.1
+ * Installed [Python](https://www.python.org/downloads/) >= 3.6 or [Anaconda](https://www.anaconda.com/products/individual) >= 4.10.1
 
 ## Launch
 
