@@ -21,7 +21,7 @@ class TextFont2Img:
         with open(config_file) as f:
             self._config = json.load(f)
 
-        self.output_path = self._config['output_path']
+        self.output_path = self._config["output_path"]
 
         self._fonts_list = []
         self._init_fonts()
@@ -29,7 +29,7 @@ class TextFont2Img:
         self._colors_list = []
         self._init_colors()
 
-        self._output_path = self._config['output_path']
+        self._output_path = self._config["output_path"]
         if not os.path.exists(self._output_path):
             os.makedirs(self._output_path)
 
@@ -37,7 +37,7 @@ class TextFont2Img:
         """
         This function initializes the list of fonts.
         """
-        with open(self._config['fonts_file'], "r") as f:
+        with open(self._config["fonts_file"], "r") as f:
             for line in f:
                 self._fonts_list.append(line.strip())
 
@@ -45,7 +45,7 @@ class TextFont2Img:
         """
         This function initializes the list of colors.
         """
-        with open(self._config['colors_file'], "r") as file_with_colors:
+        with open(self._config["colors_file"], "r") as file_with_colors:
             for color in file_with_colors:
                 r, g, b = color.strip().split(' ')
                 self._colors_list.append((int(r), int(g), int(b)))
@@ -54,13 +54,13 @@ class TextFont2Img:
         """
         This function creates images for each line of text with a random font and color.
         """
-        with open(self._config['text_file'], "r") as f:
+        with open(self._config["text_file"], "r") as f:
             for line in f:
                 text = line.strip()
 
                 size_font = np.random.randint(
-                    self._config["fonts_param"]['size_fonts_min'],
-                    self._config["fonts_param"]['size_fonts_max'])
+                    self._config["fonts_param"]["size_fonts_min"],
+                    self._config["fonts_param"]["size_fonts_max"])
                 font_name = np.random.choice(self._fonts_list)
                 font = ImageFont.truetype(font_name, size_font)
 
@@ -69,8 +69,8 @@ class TextFont2Img:
 
                 img = Image.new(
                     "RGBA", tuple(
-                        self._config["img_params"]['size_image']), tuple(
-                        self._config["img_params"]['color_img']))
+                        self._config["img_params"]["size_image"]), tuple(
+                        self._config["img_params"]["color_img"]))
                 drawer = ImageDraw.Draw(img)
                 self._draw_text(text, drawer, font, color)
                 ImageDraw.Draw(img)
@@ -87,19 +87,19 @@ class TextFont2Img:
         font: random font
         color: random color
         """
-        xpos = self._config["img_params"]['weight']
+        xpos = self._config["img_params"]["weight"]
 
         for letter in text:
             drawer.text(
                 (xpos,
-                 self._config["img_params"]['height']),
+                 self._config["img_params"]["height"]),
                 letter,
                 fill=color,
                 font=font,
-                stroke_width=self._config["fonts_param"]['stroke_width'],
+                stroke_width=self._config["fonts_param"]["stroke_width"],
                 stroke_fill=color)
             letter_width, letter_height = drawer.textsize(letter, font=font)
-            xpos += letter_width - self._config["fonts_param"]['shift_letter']
+            xpos += letter_width - self._config["fonts_param"]["shift_letter"]
 
 
 def init_argparse() -> None:
