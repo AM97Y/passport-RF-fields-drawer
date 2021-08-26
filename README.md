@@ -27,7 +27,7 @@ For more information launch `python main.py -h`. Please also look at `configs/RE
 
 ```
 
-## autopep8
+## Autopep8
 [Autopep8](https://pypi.org/project/autopep8/) automatically formats Python code to conform to the PEP 8 style guide. It uses the pycodestyle utility to determine what parts of the code needs to be formatted. autopep8 is capable of fixing most of the formatting issues that can be reported by pycodestyle.
 
 ```

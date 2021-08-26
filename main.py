@@ -58,27 +58,23 @@ class TextFont2Img:
             for line in f:
                 text = line.strip()
 
-                size_font = np.random.randint(
-                    self._config["fonts_param"]["size_fonts_min"],
-                    self._config["fonts_param"]["size_fonts_max"])
+                size_font = np.random.randint(self._config["fonts_param"]["size_fonts_min"],
+                                              self._config["fonts_param"]["size_fonts_max"])
                 font_name = np.random.choice(self._fonts_list)
                 font = ImageFont.truetype(font_name, size_font)
 
                 color = self._colors_list[np.random.choice(
                     len(self._colors_list))]
 
-                img = Image.new(
-                    "RGBA", tuple(
-                        self._config["img_params"]["size_image"]), tuple(
-                        self._config["img_params"]["color_img"]))
+                img = Image.new("RGBA", tuple(self._config["img_params"]["size_image"]),
+                                tuple(self._config["img_params"]["color_img"]))
                 drawer = ImageDraw.Draw(img)
                 self._draw_text(text, drawer, font, color)
                 ImageDraw.Draw(img)
 
                 today = datetime.now()
 
-                img.save(
-                    f'{self.output_path}/{today.strftime("%Y-%m-%d-%H.%M.%S.%f")}.png')
+                img.save(f'{self.output_path}/{today.strftime("%Y-%m-%d-%H.%M.%S.%f")}.png')
 
     def _draw_text(self, text: str, drawer, font, color) -> None:
         """
@@ -90,14 +86,8 @@ class TextFont2Img:
         xpos = self._config["img_params"]["weight"]
 
         for letter in text:
-            drawer.text(
-                (xpos,
-                 self._config["img_params"]["height"]),
-                letter,
-                fill=color,
-                font=font,
-                stroke_width=self._config["fonts_param"]["stroke_width"],
-                stroke_fill=color)
+            drawer.text((xpos, self._config["img_params"]["height"]), letter, fill=color, font=font,
+                        stroke_width=self._config["fonts_param"]["stroke_width"], stroke_fill=color)
             letter_width, letter_height = drawer.textsize(letter, font=font)
             xpos += letter_width - self._config["fonts_param"]["shift_letter"]
 
@@ -117,7 +107,6 @@ def init_argparse() -> None:
         help='Path to config file.',
         default='configs/default.json',
         type=str)
-
     parser.add_argument(
         '--output_path',
         nargs='?',
